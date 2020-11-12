@@ -2,52 +2,45 @@
 // Created by 詹国煌 on 2020/11/9.
 //
 #include <stdio.h>
+#define MAXLINE 1000
 
-#define INITLINE 2
-
-int getLine(char line[]);
-
+int getLine(char line[], int maxline);
 void copy(char to[], char from[]);
-
-void resize(char s[]);
-
-int currLen;
 
 main() {
     int len;
     int max;
-    char line[INITLINE];
-    char longest[INITLINE];
+    char line[MAXLINE];
+    char longest[MAXLINE];
 
-    currLen = INITLINE;
     max = 0;
-    while ((len = getLine(line)) > 0) {
+    while ((len = getLine(line, MAXLINE))> 0) {
         if (len > max) {
             max = len;
-            longest = char[3]{};
             copy(longest, line);
         }
     }
     if (max > 0) {
-        printf("%s", longest);
+        printf("%d, %s", len, longest);
     }
     return 0;
 }
 
-int getLine(char s[]) {
-    int c, i;
-    for (i = 0; (c = getchar()) != EOF && c != '\n'; ++i) {
-        if (i >= currLen) {
-            resize(s);
+int getLine(char s[], int lim) {
+    int c, i, j;
+    for (i=0; (c=getchar()) != EOF && c != '\n'; ++i) {
+        if (i < lim - 2) {
+            s[j] = c;
+            ++j;
         }
-        s[i] = c;
+        if (c == '\n') {
+            s[j] = c;
+            ++i;
+            ++j;
+        }
+        s[j]= '\0';
+        return i;
     }
-    if (c == '\n') {
-        s[i] = c;
-        ++i;
-    }
-    s[i] = '\0';
-    return i;
 }
 
 void copy(char to[], char from[]) {
@@ -55,13 +48,4 @@ void copy(char to[], char from[]) {
     i = 0;
     while ((to[i] = from[i]) != '\0')
         ++i;
-}
-
-void resize(char s[]) {
-    char ns[2 * currLen];
-    for (int i = 0; i < currLen; i++) {
-        ns[i] = s[i];
-    }
-    s = ns;
-    currLen = 2 * currLen;
 }
