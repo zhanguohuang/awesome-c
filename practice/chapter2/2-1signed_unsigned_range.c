@@ -8,4 +8,11 @@
 #include <limits.h>
 #include <float.h>
 
+#include <stdio.h>
 
+int main() {
+    printf("signed: char_min:%d, char_max:%d", CHAR_MIN, CHAR_MAX);
+    printf("unsigned: unsigned_char_min:%d, unsigned_char_max:%d", 0, UCHAR_MAX);
+    printf("signed: int_min:%d, int_max:%d", INT_MIN, INT_MAX);
+    printf("signed: char_min:%d, char_max:%d", CHAR_MIN, CHAR_MAX);
+}
