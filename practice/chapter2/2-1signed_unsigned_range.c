@@ -11,8 +11,28 @@
 #include <stdio.h>
 
 int main() {
-    printf("signed: char_min:%d, char_max:%d", CHAR_MIN, CHAR_MAX);
-    printf("unsigned: unsigned_char_min:%d, unsigned_char_max:%d", 0, UCHAR_MAX);
-    printf("signed: int_min:%d, int_max:%d", INT_MIN, INT_MAX);
-    printf("signed: char_min:%d, char_max:%d", CHAR_MIN, CHAR_MAX);
+    // 8
+    printf("signed: char_min:%d, char_max:%d\n", CHAR_MIN, CHAR_MAX);
+    printf("unsigned: unsigned_char_min:%d, unsigned_char_max:%d\n", 0, UCHAR_MAX);
+    printf("\n");
+
+    // short 16
+    printf("signed: short_min:%d, short_max:%d\n", SHRT_MIN, SHRT_MAX);
+    printf("unsigned: unsigned_short_min:%d, unsigned_short_max:%d\n", 0, USHRT_MAX);
+    printf("\n");
+
+    // int 32
+    printf("signed: int_min:%d, int_max:%d\n", INT_MIN, INT_MAX);
+    printf("unsigned: unsigned_int_min:%d, unsigned_int_max:%ld\n", 0, UINT_MAX);
+    printf("\n");
+
+    // long 64
+    printf("signed: long_min:%d, long_max:%ld\n", LONG_MIN, LONG_MAX);
+    printf("unsigned: unsigned_long_min:%d, unsigned_long_max:%lu\n", 0, ULONG_MAX);
+
+    // 二进制有符号运算，以二位为例子
+    // 00 ->  0
+    // 01 ->  1     0开头，后面全是1最大
+    // 10 ->  -2    1开头，后面全是0最小
+    // 11 ->  -1
 }
