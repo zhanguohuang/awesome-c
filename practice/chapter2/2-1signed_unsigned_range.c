@@ -10,29 +10,65 @@
 
 #include <stdio.h>
 
+// x的y次方
+long pow(int x, int y);
+
+// 填充为1，bizSize表示填充多少位
+long fillOne(int bizSize);
+
 int main() {
     // 8
     printf("signed: char_min:%d, char_max:%d\n", CHAR_MIN, CHAR_MAX);
     printf("unsigned: unsigned_char_min:%d, unsigned_char_max:%d\n", 0, UCHAR_MAX);
+    printf("\n");
+    // 8
+    printf("signed: char_min:%d, char_max:%d\n", -fillOne(7) - 1, fillOne(7));
+    printf("unsigned: unsigned_char_min:%d, unsigned_char_max:%d\n", 0, fillOne(8));
     printf("\n");
 
     // short 16
     printf("signed: short_min:%d, short_max:%d\n", SHRT_MIN, SHRT_MAX);
     printf("unsigned: unsigned_short_min:%d, unsigned_short_max:%d\n", 0, USHRT_MAX);
     printf("\n");
+    printf("signed: char_min:%d, char_max:%d\n", -fillOne(15) - 1, fillOne(15));
+    printf("unsigned: unsigned_char_min:%d, unsigned_char_max:%d\n", 0, fillOne(16));
+    printf("\n");
 
     // int 32
     printf("signed: int_min:%d, int_max:%d\n", INT_MIN, INT_MAX);
     printf("unsigned: unsigned_int_min:%d, unsigned_int_max:%ld\n", 0, UINT_MAX);
     printf("\n");
+    printf("signed: char_min:%d, char_max:%d\n", -fillOne(31) - 1, fillOne(31));
+    printf("unsigned: unsigned_char_min:%d, unsigned_char_max:%d\n", 0, fillOne(32));
+    printf("\n");
 
     // long 64
     printf("signed: long_min:%d, long_max:%ld\n", LONG_MIN, LONG_MAX);
     printf("unsigned: unsigned_long_min:%d, unsigned_long_max:%lu\n", 0, ULONG_MAX);
+    // long 64
+    printf("signed: long_min:%d, long_max:%ld\n", -fillOne(63) - 1, fillOne(63));
+    printf("unsigned: unsigned_long_min:%d, unsigned_long_max:%lu\n", 0, fillOne(64));
 
     // 二进制有符号运算，以二位为例子
     // 00 ->  0
     // 01 ->  1     0开头，后面全是1最大
     // 10 ->  -2    1开头，后面全是0最小
     // 11 ->  -1
+}
+
+long fillOne(int bizSize) {
+    long r = 0;
+    for (int i = 0; i < bizSize; i++) {
+        r = r + pow(2, i);
+    }
+    return r;
+}
+
+
+long pow(int x, int y) {
+    long r = 1;
+    for (int i = 0; i < y; i++) {
+        r = r * x;
+    }
+    return r;
 }
